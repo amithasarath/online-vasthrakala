@@ -1,0 +1,88 @@
+{% extends "accounts/base_admin.html" %}
+
+{% load static %}
+
+{% block admin_content %}
+<!--<div class="span4" style="float:left;display:block;height:400px;">-->
+    <!--<ul class="nav nav-pills nav-stacked">-->
+        <!--<li>-->
+            <!--Dealers-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--Resellers-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--Customers-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--Sales Orders-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--Dashboard-->
+        <!--</li>-->
+        <!--<li>-->
+            <!--Reports-->
+        <!--</li>-->
+
+
+    <!--</ul>-->
+<!--</div>-->
+
+
+<table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <td>Sl.No.</td>
+            <td>Booking Date</td>
+            <td>Reseller</td>
+            <td>Customer</td>
+            <td>Type</td>
+            <td>Qty</td>
+            <td>Buying Price</td>
+            <td>Selling Price</td>
+            <td>Profit</td>
+            <td>Dealer</td>
+            <td>Tracking ID</td>
+        </tr>
+        </thead>
+
+            {% for order in all_orders %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ order.booking_date }}</td>
+                <td>{{ order.reseller }}</td>
+                <td>{{order.customer}}</td>
+                <td>{{order.type}}</td>
+                <td>{{order.qty}}</td>
+                <td>{{order.cost_price}}</td>
+                <td>{{order.selling_price}}</td>
+                <td>{{order.profit}}</td>
+                <td>{{order.dealer_code}}</td>
+                <td>{{order.tracking_id}}</td>
+            </tr>
+
+            {% endfor %}
+
+            <tr>
+                <td>Total : {{ all_orders.count }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{selling_price}}</td>
+
+                <td>{{ sp }}</td>
+
+                <td>{{dealer_code}}</td>
+                <td>{{ sp }}</td>
+                <td>{{tracking_id}}</td>
+            </tr>
+
+
+    </table>
+
+
+
+
+{% endblock %}

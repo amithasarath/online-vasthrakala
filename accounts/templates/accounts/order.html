@@ -1,0 +1,69 @@
+{% extends "accounts/base_admin.html" %}
+
+{% load static %}
+
+{% block admin_content %}
+
+  <p>  Please add the details of Sales Order</p>
+    <table class="table table-bordered">
+        <form action="{% url 'accounts:make_so' %}" method="POST">
+            {% csrf_token %}
+            <tr>
+                <td>Client Type</td>
+                <td> {{ form.client_type}}</td>
+            </tr>
+            <tr>
+                <td>Is New reseller</td>
+                <td> {{ form.new_reseller}}</td>
+            </tr>
+            <tr>
+                <td>Reseller name</td>
+                <td> {{ form.reseller}}</td>
+            </tr>
+            <tr>
+                <td>Is New Customer</td>
+                <td> {{ form.new_customer}}</td>
+            </tr>
+            <tr>
+                <td>Customer Name</td>
+                <td> {{ form.customer}}</td>
+            </tr>
+            <tr>
+                <td>Item Type</td>
+                <td> {{ form.type}}</td>
+            </tr>
+            <tr>
+                <td>Quantity</td>
+                <td> {{ form.qty}}</td>
+            </tr>
+            <tr>
+                <td>Booking Date</td>
+                <td> {{ form.booking_date}}</td>
+            </tr>
+            <tr>
+                <td>Buying Price</td>
+                <td> {{ form.cost_price}}</td>
+            </tr>
+            <tr>
+                <td>Selling Price</td>
+                <td> {{ form.selling_price}}</td>
+            </tr>
+            <tr>
+                <td>Dealer</td>
+                <td> {{ form.dealer_code}}</td>
+            </tr>
+            <tr>
+                <td>Tracking ID</td>
+                <td> {{ form.tracking_id}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                <input type ="submit" value="Save the Order">
+                </td>
+            </tr>
+        </form>
+    </table>
+
+
+
+{% endblock %}

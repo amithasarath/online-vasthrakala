@@ -1,0 +1,48 @@
+{% extends "accounts/base_admin.html" %}
+
+{% load static %}
+
+{% block admin_content %}
+
+
+    <table class="table table-bordered table-hover">
+        <!--Row for creating-->
+        <tr>
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <td>ID</td>
+                <td>{{ form.customer_name }}</td>
+                <td><input type="submit" value="Add Customer" /></td>
+            </form>
+        </tr>
+
+        <!--Row for Heading-->
+        <thead>
+        <tr>
+            <td>Customer ID</td>
+            <td>Customer Name</td>
+            <td>Add/Delete Customer</td>
+        </tr>
+        </thead>
+
+        <!--Rows for listing data-->
+        {% for customer in customers %}
+        <tr class="">
+            <td>{{forloop.counter}}</td>
+            <!--<td>{{customer.id}}</td>-->
+            <td>{{customer.customer_name}}</td>
+            <td>
+                <form action="{% url 'accounts:delete_customer' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="customer_id" value="{{ customer.id }}"/>
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+{% endblock %}

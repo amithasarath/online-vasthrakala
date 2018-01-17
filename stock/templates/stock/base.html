@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<meta name="description" content="">
+			<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
+			<!-- bootstrap -->
+			<link href="/static/stock/css/bootstrap.min.css" rel="stylesheet">
+			<link href="{% static 'stock/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+
+			<link href="{% static 'stock/css/bootstrappage.css' %}" rel="stylesheet"/>
+
+			<!-- global styles -->
+			<link href="{% static 'stock/css/flexslider.css' %}" rel="stylesheet"/>
+			<link href="{% static 'stock/css/main.css' %}" rel="stylesheet"/>
+
+			<!-- scripts -->
+			<script src="{% static 'stock/js/jquery-1.7.2.min.js' %}"></script>
+
+
+		<!--<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+
+			<script src="{% static 'stock/js/bootstrap.min.js' %}"></script>
+			<script src="{% static 'stock/js/superfish.js' %}"></script>
+			<script src="{% static 'stock/js/jquery.scrolltotop.js' %}"></script>
+			<!--[if lt IE 9]>
+				<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+				<script src="{% static 'stock/js/respond.min.js' %}"></script>
+			<![endif]-->
+	</head>
+	<body>
+		{% block banner %}
+            {% include "stock/banner.html" %}
+        {% endblock %}
+
+		<div id="wrapper" class="container">
+
+			{% block navbar %}
+				{% include "stock/navbar.html" %}
+			{% endblock %}
+
+			{% block slider %}
+				{% include "stock/slider.html" %}
+			{% endblock %}
+			<section class="header_text">
+				We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates.
+				<br/>Don't miss to use our cheap abd best bootstrap templates.
+			</section>
+
+			<section class="main-content">
+				<div class="row">
+					{% block content %}
+
+					{% endblock %}
+				</div>
+			</section>
+
+			{% block client %}
+				{% include "stock/client.html" %}
+			{% endblock %}
+
+			{% block footer %}
+				{% include "stock/footer.html" %}
+			{% endblock %}
+
+			{% block copyright %}
+				{% include "stock/copyright.html" %}
+			{% endblock %}
+
+		</div>
+
+		{% block javascript %}	{% endblock %}
+	</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends "accounts/base_admin.html" %}
+
+{% load static %}
+
+{% block admin_content %}
+
+    <table class="table table-bordered table-hover">
+        <!--Row for creating-->
+        <tr>
+            <form action="{% url 'accounts:dealers' %}" method="POST">
+                {% csrf_token %}
+                <td>{{ form.dealer_code }}</td>
+                <td>{{ form.dealer_name }}</td>
+                <td><input type="submit" value="Add Dealer" /></td>
+            </form>
+        </tr>
+
+        <!--Row for Heading-->
+        <thead>
+        <tr>
+            <td>Dealer Code</td>
+            <td>Dealer name</td>
+            <td>Add/Delete Dealer</td>
+        </tr>
+        </thead>
+
+        <!--Rows for listing data-->
+        {% for dealer in dealers %}
+        <tr class="">
+            <td>{{dealer.dealer_code}}</td>
+            <td>{{dealer.dealer_name}}</td>
+            <td>
+                <form action="{% url 'accounts:delete_dealer' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="dealer_id" value= "{{ dealer.dealer_code }}" />
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+
+{% endblock %}
