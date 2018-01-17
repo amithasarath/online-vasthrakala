@@ -60,7 +60,7 @@ def make_so(request):
     all_orders = SalesOrder.objects.all()
     if request.method == "POST":
         form = SalesOrderForm(request.POST)
-        # print form
+
         if form.is_valid():
             form.save()
             # messages.info(request, 'Your order has been saved successfully!')
@@ -78,15 +78,12 @@ class SOListView(generic.ListView):
     template_name = "accounts/order_list.html"
     context_object_name = "all_orders"
     profit = SalesOrder.objects.all().aggregate(Sum('selling_price'))
-    # print profit
-    # print "#" * 50
 
     def get_context_data(self, **kwargs):
         context = super(SOListView, self).get_context_data(**kwargs)
         context['profit'] = SalesOrder.objects.all().aggregate(Sum('selling_price'))
                             # - SalesOrder.objects.all().aggregate(Sum('cost_price'))
         context['sp'] = SalesOrder.objects.all().aggregate(Sum('selling_price'))
-        print context['profit']['selling_price__sum']
         return context
 
 
