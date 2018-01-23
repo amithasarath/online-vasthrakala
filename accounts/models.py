@@ -37,19 +37,29 @@ class Dealer(models.Model):
 
 
 class SalesOrder(models.Model):
+    status = (
+        ('P','Pre-Booked'),
+        ('B','Booked'),
+        ('D','Dispatched'),
+        ('R','Delivered'),
+        ('C','Cancelled'),
+    )
     client_type     = models.ForeignKey(ClientType,on_delete=models.CASCADE)
-    reseller        = models.ForeignKey(Reseller,on_delete=models.CASCADE)
+    reseller        = models.ForeignKey(Reseller,on_delete=models.CASCADE,blank=True,null=True)
     new_reseller    = models.BooleanField(default=False)
     customer        = models.ForeignKey(Customer,on_delete=models.CASCADE)
     new_customer    = models.BooleanField(default=False)
     type            = models.ForeignKey('stock.ItemType',on_delete=models.CASCADE)
-    cost_price      =   models.DecimalField(max_digits=7,decimal_places=2,blank=True,null=True)
-    selling_price   =   models.DecimalField(max_digits=7,decimal_places=2,blank=True,null=True)
-    profit          =   models.DecimalField(max_digits=7,decimal_places=2,blank=True,null=True)
+    cost_price      =   models.DecimalField(max_digits=10,decimal_places=2,blank=True,null=True)
+    selling_price   =   models.DecimalField(max_digits=10,decimal_places=2,blank=True,null=True)
+    profit          =   models.DecimalField(max_digits=10,decimal_places=2,blank=True,null=True)
     dealer_code    = models.ForeignKey(Dealer,on_delete=models.CASCADE)
     booking_date    =  models.DateField(default=datetime.date.today)
-    tracking_id     = models.CharField(max_length=100)
+    tracking_id     = models.CharField(max_length=100,blank=True)
     qty            = models.IntegerField(default=False)
+    order_status    =models.CharField(max_length=10,choices=status,blank= False)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     def __int__(self):
         return self.id

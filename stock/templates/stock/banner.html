@@ -11,7 +11,18 @@
 					<li><a href="#">My Account</a></li>
 					<li><a href="cart.html">Your Cart</a></li>
 					<li><a href="checkout.html">Checkout</a></li>
-					<li><a href="{% url 'login' %}">Login</a></li>
+					<li>
+						{% if user.is_authenticated %}
+    						<p>Welcome, {{ user.username }} |
+								<a href="{% url 'logout' %}">Logout</a>
+							</p>
+						{% else %}
+							<p>Welcome, Guest |
+								<a href="{% url 'login' %}">Login</a>
+							</p>
+						{% endif %}
+
+					</li>
 				</ul>
 			</div>
 		</div>

@@ -1,0 +1,71 @@
+{% extends "accounts/base_admin.html" %}
+
+{% load static %}
+
+{% block admin_content %}
+<p>------------------------------Update form------------------------------------</p>
+<form  method="post" class="form-horizontal">
+    {% csrf_token %}
+    {{form.non_field_errors }}
+    <div class="form-group">
+        {{ form.order_status.errors}}
+        <div class="col-md-2"> {{ form.order_status.label_tag}}</div>
+         <div class="col-md-10"> {{ form.order_status}}  </div>
+    </div>
+    <div class="form-group">
+        {{ form.client_type.errors}}
+       <div class="col-md-2"> {{ form.client_type.label_tag}} </div>
+       <div class="col-md-10"> {{ form.client_type}} </div>
+    </div>
+    <div class="FieldWrapper form-group">
+        {{ form.reseller.errors}}
+         <div class="col-md-2">{{ form.reseller.label_tag}}</div>
+         <div class="col-md-10">{{ form.reseller}}</div>
+    </div>
+    <div class="FieldWrapper form-group">
+        {{ form.customer.errors}}
+         <div class="col-md-2">{{ form.customer.label_tag}}</div>
+         <div class="col-md-10">{{ form.customer}}</div>
+    </div>
+    <div class="form-group">
+        {{ form.type.errors}}
+         <div class="col-md-2">{{ form.type.label_tag}}</div>
+         <div class="col-md-10">{{ form.type}}</div>
+    </div>
+    <div class="form-group">
+        {{ form.qty.errors}}
+         <div class="col-md-2">{{ form.qty.label_tag}}</div>
+         <div class="col-md-10">{{ form.qty}}</div>
+    </div>
+    <div class="form-group">
+        {{ form.booking_date.errors}}
+         <div class="col-md-2">{{ form.booking_date.label_tag}}</div>
+         <div class="col-md-10">{{ form.booking_date}}</div>
+    </div>
+    <div class="form-group">
+        {{ form.cost_price.errors}}
+         <div class="col-md-2">{{ form.cost_price.label_tag}}</div>
+        <div class="col-md-10"> {{ form.cost_price}}</div>
+    </div>
+    <div class="form-group">
+        {{ form.selling_price.errors}}
+         <div class="col-md-2">{{ form.selling_price.label_tag}}</div>
+         <div class="col-md-10">{{ form.selling_price}}</div>
+    </div>
+    <div class="form-group">
+        {{ form.dealer_code.errors}}
+         <div class="col-md-2">{{ form.dealer_code.label_tag}}</div>
+        <div class="col-md-10"> {{ form.dealer_code}}</div>
+    </div>
+    <div class="form-group">
+        {{ form.tracking_id.errors}}
+         <div class="col-md-2">{{ form.tracking_id.label_tag}}</div>
+         <div class="col-md-10">{{ form.tracking_id}}</div>
+    </div>
+
+    <input type="submit" value="Update Order">
+</form>
+
+
+
+{% endblock %}

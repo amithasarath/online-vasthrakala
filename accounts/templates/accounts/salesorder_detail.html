@@ -1,0 +1,72 @@
+{% extends "accounts/base_admin.html" %}
+
+{% load static %}
+
+{% block admin_content %}
+
+<div class="container">
+	<div class="row">
+		<h2>Sales Order Details</h2>
+	</div>
+    <div class="row">
+        <fieldset class="for-panel">
+          <legend>Order ID: {{object.id}} , Booking Date: {{object.booking_date}}</legend>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-horizontal">
+                  <label class="col-xs-5 control-label">Reseller Name:</label>
+                  <p class="form-control-static">{{object.reseller }}</p>
+                  <label class="col-xs-5 control-label">Customer Name</label>
+                  <p class="form-control-static">{{ object.customer }}</p>
+                    <label class="col-xs-5 control-label">Selling Price</label>
+                    <p class="form-control-static">{{object.selling_price}}</p>
+                  <label class="col-xs-5 control-label">Item Type</label>
+                    <p class="form-control-static">{{object.type}}</p>
+                  <label class="col-xs-5 control-label">Quantity</label>
+                    <p class="form-control-static">{{object.qty}}</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-horizontal">
+                  <label class="col-xs-4 control-label">Dealer: </label>
+                  <p class="form-control-static">{{ object.dealer_code }}</p>
+                  <label class="col-xs-4 control-label">City:</label>
+                  <p class="form-control-static">Simmi Valley</p>
+                  <label class="col-xs-4 control-label">Buying Price</label>
+                  <p class="form-control-static">{{object.cost_price }}</p>
+                  <label class="col-xs-4 control-label">Profit</label>
+                  <p class="form-control-static">{{object.profit}}</p>
+                  <label class="col-xs-4 control-label">Tracking ID</label>
+                  <p class="form-control-static">{{ object.tracking_id}}</p>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <a href="{% url 'accounts:so_list' %}" class="go-back">&laquo; Go Back</a>
+    </div>
+</div>
+
+<style>
+    a {
+        text-decoration: none;
+        display: inline-block;
+        padding: 8px 16px;
+    }
+
+    a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+
+    .go-back {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+</style>
+
+
+
+
+
+{% endblock %}

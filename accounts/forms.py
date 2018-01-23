@@ -16,7 +16,9 @@ class CustomerForm(forms.ModelForm):
         model = Customer
         fields = '__all__'
 
+
 class SalesOrderForm(forms.ModelForm):
     class Meta:
         model = SalesOrder
         fields = '__all__'
+        # fields = ['reseller','customer','dealer_code','cost_price','selling_price','order_status']

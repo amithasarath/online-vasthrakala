@@ -5,125 +5,22 @@
 {% block content %}
 
 <div class="span12">
-	<div class="row">
-		<div class="span12">
-			<h4 class="title">
-				<span class="pull-left">
-					<span class="text">
-						<span class="line">Feature <strong>Products</strong></span>
-					</span>
-				</span>
-				<span class="pull-right">
-					<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
-				</span>
-			</h4>
-			<div id="myCarousel" class="myCarousel carousel slide">
-				<div class="carousel-inner">
-					<div class="active item">
-						<ul class="thumbnails">
-						{% for item in object_list %}
-							<li class="span3">
-								<div class="product-box">
-									<span class="sale_tag"></span>
-									<p>
-										<a href="product_detail.html"><img src="{% static item.group_image.url %}" alt="" /></a>
-									</p>
-									<a href="product_detail.html" class="title">{{ item.group }}</a>
-									<br/>
-									<a href="products.html" class="category">{{ item.description }}</a>
-									<p class="price">Rs.{{ item.price }}</p>
-								</div>
-							</li>
-						{% endfor %}
-						</ul>
-					</div>			
-				</div>
-			</div>
-		</div>
-	</div>
+	<!--All time available sarees-->
+	{% block all_time_1 %}
+   		{% include 'stock/all_time_1.html' %}
+	{% endblock %}
 	<br/>
-	<div class="row">
-		<div class="span12">
-			<h4 class="title">
-				<span class="pull-left">
-					<span class="text">
-						<span class="line">Latest <strong>Products</strong>	</span>
-					</span>
-				</span>
-				<span class="pull-right">
-					<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
-				</span>
-			</h4>
-			<div id="myCarousel-2" class="myCarousel carousel slide">
-				<div class="carousel-inner">
-					<div class="active item">
-						<ul class="thumbnails">
-							<li class="span3">
-								<div class="product-box">
-									<span class="sale_tag"></span>
-									<p><a href="product_detail.html"><img src="{% static 'stock/img/cloth/bootstrap-women-ware2.jpg' %}" alt="" /></a></p>
-									<a href="product_detail.html" class="title">Ut wisi enim ad</a><br/>
-									<a href="products.html" class="category">Commodo consequat</a>
-									<p class="price">$25.50</p>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="item">
-						<ul class="thumbnails">
-							<li class="span3">
-								<div class="product-box">
-									<p><a href="product_detail.html"><img src="{% static 'stock/img/cloth/bootstrap-women-ware4.jpg' %}" alt="" /></a></p>
-									<a href="product_detail.html" class="title">Know exactly</a><br/>
-									<a href="products.html" class="category">Quis nostrud</a>
-									<p class="price">$45.50</p>
-								</div>
-							</li>
-							<li class="span3">
-								<div class="product-box">
-									<p><a href="product_detail.html"><img src="{% static 'stock/img/cloth/bootstrap-women-ware1.jpg' %}" alt="" /></a></p>
-									<a href="product_detail.html" class="title">Quis nostrud exerci</a><br/>
-									<a href="products.html" class="category">Quis nostrud</a>
-									<p class="price">$25.20</p>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	{% block all_time_2 %}
+   		{% include 'stock/all_time_2.html' %}
+	{% endblock %}
+
+	<!--{% block features %}-->
+   		<!--{% include 'stock/index_features.html' %}-->
+	<!--{% endblock %}-->
 
 
-	<div class="row feature_box">
-		<div class="span4">
-			<div class="service">
-				<div class="responsive">
-					<img src="{% static 'stock/img/feature_img_2.png' %}" alt="" />
-					<h4>MODERN <strong>DESIGN</strong></h4>
-					<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
-				</div>
-			</div>
-		</div>
-		<div class="span4">
-			<div class="service">
-				<div class="customize">
-					<img src="{% static 'stock/img/feature_img_1.png' %}" alt="" />
-					<h4>FREE <strong>SHIPPING</strong></h4>
-					<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
-				</div>
-			</div>
-		</div>
-		<div class="span4">
-			<div class="service">
-				<div class="support">
-					<img src="{% static 'stock/img/feature_img_3.png' %}" alt="" />
-					<h4>24/7 LIVE <strong>SUPPORT</strong></h4>
-					<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
 </div>
 
 

@@ -25,8 +25,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^login/$', auth_views.login,{'template_name':'accounts/register.html'},name='login'),
-    url(r'^logout/$', auth_views.logout, name='logout'),
+    url(r'^logout/$', auth_views.logout,{'next_page':'login'}, name='logout'),
 
     url(r'',include('stock.urls')),
     url(r'^accounts/',include('accounts.urls')),
+
+    # url(r'^accounts/$',   include('django.contrib.auth.urls')),
 ]+  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

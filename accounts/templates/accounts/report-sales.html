@@ -1,0 +1,169 @@
+{% extends "accounts/base_admin.html" %}
+
+{% load static %}
+
+{% block admin_content %}
+
+<div class="row well">
+
+     <!--Custom Sales Report : starts     -->
+{% if report == "custom" %}
+     <form method="get" class="" value = "custom" action="{% url 'accounts:custom_sales_report' %}">
+        <div class="form-group">
+            <div class ="col-md-12" style="float:right">
+                <a href="{% url 'accounts:export_users_xls' %}" class="btn btn-info btn-sm">
+                  <span class="glyphicon glyphicon-export"></span> Export to Excel
+                </a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label for="reseller">Reseller:</label>
+                <select class="form-control" id="reseller" name="reseller">
+                    <option></option>
+                    {% for reseller in resellers_list %}
+                        <option>{{reseller.reseller_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <label for="customer">Customer:</label>
+                <select class="form-control" id="customer" name="customer">
+                    <option></option>
+                    {% for customer in customers_list %}
+                        <option>{{customer.customer_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-4">
+                  <label for="dealer_code">Dealer:</label>
+                    <select class="form-control" id="dealer_code" name="dealer_code">
+                        <option></option>
+                    {% for dealer in dealers_list %}
+                        <option>{{dealer.dealer_code}}</option>
+                    {% endfor %}
+                    </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label for="cp">Buying Price:</label>
+                <input type="number" class="form-control" id="cp" name="cp">
+            </div>
+
+            <div class="col-sm-4">
+                <label for="sp">Selling Price:</label>
+                <input type="number" class="form-control" id="sp" name="sp">
+            </div>
+
+            <div class="col-sm-4">
+                  <label for="tracking_id">Tracking ID:</label>
+                  <input type="text" class="form-control" id="tracking_id" name = "tracking_id" value="{{request.GET.tracking_id}}">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label for="booking_date">Booking Date:</label>
+                <input type="date" class="form-control" id="booking_date" name="booking_date">
+                <!--<input type="date" name="bday">-->
+            </div>
+
+            <div class="col-sm-4">
+                <label for="type">Type:</label>
+                <input type="text" class="form-control" id="type" name="type">
+            </div>
+
+            <div class="col-sm-4">
+                  <label for="order_status">Order Status:</label>
+                  <input type="text" class="form-control" id="order_status" name="order_status">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <!--<input type="hidden" name="dealer_code" value="kyc"/>-->
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+ <!--Custom Sales Report : Ends   -->
+
+
+
+    {% elif report == "daily" %}
+     <form method="get" class="" value ="daily" action="{% url 'accounts:daily_sales_report' %}">
+        <div class="form-group">
+            <div class="col-sm-4">
+                <label for="booking_date">Booking Date:</label>
+                <input type="date" class="form-control" name="booking_date">
+                <!--<input type="date" name="bday">-->
+            </div>
+
+            <div class="col-md-4">
+                <!--<input type="hidden" name="dealer_code" value="kyc"/>-->
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </div>
+
+            <div class ="col-md-4" style="float:right">
+                <a href="{% url 'accounts:export_users_xls' %}" class="btn btn-info btn-sm">
+                  <span class="glyphicon glyphicon-export"></span> Export to Excel
+                </a>
+            </div>
+        </div>
+
+    </form>
+
+    {% endif %}
+ <!--Custom Sales Report : Ends   -->
+
+</div>
+
+<div>
+         {% if so_list %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Reseller</th>
+                    <th>Customer</th>
+                    <th>Type</th>
+                    <th>Qty</th>
+                    <th>Dealer</th>
+                    <th>Order Status</th>
+                    <th>Selling Price</th>
+                </tr>
+            </thead>
+
+            {% for row in so_list %}
+            <tr>
+                <td>{{row.reseller}}</td>
+                <td>{{row.customer}}</td>
+                <td>{{row.type}}</td>
+                <td>{{row.qty}}</td>
+                <td>{{row.dealer_code}}</td>
+                <td>{{row.order_status}}</td>
+                <td>{{row.selling_price}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+         {% else %}
+            <p> No data found in the database</p>
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+
+{% endblock %}

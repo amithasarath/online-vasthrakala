@@ -5,9 +5,30 @@
 {% block admin_content %}
 
   <p>  Please add the details of Sales Order</p>
+
+<!--<form action="{% url 'accounts:make_so' %}" method="POST" class="form-horizontal">-->
+    <!--{% csrf_token %}-->
+<!--{{ form.non_field_errors }}-->
+    <!--<div class="fieldWrapper">-->
+        <!--{{form.order_status.errors}}-->
+        <!--{{form.order_status.label_tag}}-->
+        <!--{{form.order_status}}-->
+    <!--</div>-->
+    <!--<div class="fieldWrapper">-->
+        <!--{{form.order_status.errors}}-->
+        <!--{{form.order_status.label_tag}}-->
+        <!--<input type="text" value="{{ reseller }}">-->
+    <!--</div>-->
+    <!--<input type="submit" value="Save">-->
+<!--</form>-->
+
     <table class="table table-bordered">
-        <form action="{% url 'accounts:make_so' %}" method="POST">
+        <form  action="{% url 'accounts:make_so' %}" method="POST">
             {% csrf_token %}
+            <tr>
+                <td>Order Status</td>
+                <td> {{ form.order_status}}</td>
+            </tr>
             <tr>
                 <td>Client Type</td>
                 <td> {{ form.client_type}}</td>
@@ -18,7 +39,7 @@
             </tr>
             <tr>
                 <td>Reseller name</td>
-                <td> {{ form.reseller}}</td>
+                <td> {{ form.reseller }}</td>
             </tr>
             <tr>
                 <td>Is New Customer</td>
@@ -54,7 +75,7 @@
             </tr>
             <tr>
                 <td>Tracking ID</td>
-                <td> {{ form.tracking_id}}</td>
+                <td> {{ form.tracking_id }}</td>
             </tr>
             <tr>
                 <td colspan="2">
