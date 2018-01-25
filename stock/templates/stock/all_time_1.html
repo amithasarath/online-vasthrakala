@@ -16,7 +16,7 @@
 			<div id="myCarousel" class="myCarousel carousel slide multi-item-carousel">
 				<div class="carousel-inner">
 
-{% for item in object_list|slice:":4"  %}
+{% for item in saree_list  %}
 <div class="item {% if forloop.counter == 1 %}active{% endif %}" id="slide{{ forloop.counter }}">
 <!--<div class="item active">-->
     <ul class="thumbnails">
@@ -25,7 +25,9 @@
             <div class="product-box">
                 <span class="sale_tag"></span>
                 <p>
-                    <a href="{% url 'stock:products' item.id %}"><img src="{{ item.group_image.url }}" alt="" style="height:270px;"/></a>
+                    <a href="{% url 'stock:products' item.id %}">
+						<img src="{{ item.group_image.url }}" alt="" style="height:270px;"/>
+					</a>
                 </p>
                 <a href="{% url 'stock:products' item.id %}" class="title">ID={{ item.id}} &{{ item.group }}</a>
                 <br/>

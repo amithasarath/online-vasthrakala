@@ -8,9 +8,28 @@ from . models import ItemGroup,ItemStock
 
 class ItemGroupListView(generic.ListView):
     template_name = 'stock/index.html'
+    model = ItemGroup
 
-    def get_queryset(self):
-        return ItemGroup.objects.all()
+    # def get_queryset(self):
+    #     return ItemGroup.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemGroupListView,self).get_context_data(**kwargs)
+        sarees = ItemGroup.objects.all().filter(type=2)
+        churidars = ItemGroup.objects.all().filter(type=1)
+        jewels = ItemGroup.objects.all().filter(type=3)
+
+        context["saree_list"]       = sarees
+        context["churidar_list"]    = churidars
+        context["jewel_list"]       = jewels
+
+        # context.update({
+        #     'saree_list': sarees,
+        #     'churidar_list': churidars,
+        #     'jewel_list': jewels,
+        # })
+        print sarees
+        return context
 
 
 class ItemStockListView(generic.ListView):
