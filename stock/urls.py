@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . views import ItemGroupListView,item_stock_list,ItemStockDetailView,view_cart,\
-    checkout,add_item_group
+    checkout,add_item_group,add_item_stock
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^cart/$',view_cart,name="cart"),
     url(r'^checkout/$',checkout,name="checkout"),
     url(r'^accounts/item-group/new/$',add_item_group,name="add_item_group"),
+    url(r'^accounts/item-stock/new/$',add_item_stock,name="add_item_stock"),
 ]

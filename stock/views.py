@@ -80,3 +80,18 @@ def add_item_group(request):
     else:
         form = ItemGroupForm()
         return render(request,'stock/add_item_group.html',{'form':form})
+
+
+def add_item_stock(request):
+    if request.method == "POST":
+        form = ItemStockForm(request.POST,request.FILES)
+        if form.is_valid():
+            # new_group = ItemGroup(data = request.POST)
+            # new_group.save()
+            form.save()
+            return HttpResponseRedirect(reverse('stock:add_item_stock'))
+        else:
+            print form.errors
+    else:
+        form = ItemStockForm
+        return render(request,'stock/add_item_stock.html',{'form':form})
