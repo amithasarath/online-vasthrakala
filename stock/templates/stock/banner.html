@@ -2,27 +2,25 @@
 	<div class="row">
 		<div class="span4">
 			<form method="POST" class="search_form">
-				<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
+				<input type="text" class="input-block-level search-query" Placeholder="Search ">
 			</form>
 		</div>
 		<div class="span8">
 			<div class="account pull-right">
 				<ul class="user-menu">
 					<li><a href="#">My Account</a></li>
-					<li><a href="cart.html">Your Cart</a></li>
-					<li><a href="checkout.html">Checkout</a></li>
-					<li>
+					<li><a href="{% url 'stock:cart' %}">My Cart</a></li>
+					<li><a href="{% url 'stock:checkout' %}">Checkout</a></li>
+
 						{% if user.is_authenticated %}
-    						<p>Welcome, {{ user.username }} |
-								<a href="{% url 'logout' %}">Logout</a>
-							</p>
+    						<li>Welcome, {{ user.username }}</li>
+							<li><a href="{% url 'logout' %}">Logout</a> </li>
 						{% else %}
-							<p>Welcome, Guest |
-								<a href="{% url 'login' %}">Login</a>
-							</p>
+							<li>Welcome Guest</li>
+							<li><a href="{% url 'login' %}">Login</a></li>
 						{% endif %}
 
-					</li>
+
 				</ul>
 			</div>
 		</div>
