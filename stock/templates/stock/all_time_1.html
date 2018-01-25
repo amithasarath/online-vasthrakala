@@ -1,52 +1,47 @@
 {% load static %}
 
-	<div class="row">
-		<div class="span12">
-			<h4 class="title">
-				<span class="pull-left">
-					<span class="text">
-						<span class="line">All Time Available <strong>Sarees</strong></span>
-					</span>
+<div class="row">
+	<div class="span12">
+		<h4 class="title">
+			<span class="pull-left">
+				<span class="text">
+					<span class="line">All Time Available <strong>Sarees</strong></span>
 				</span>
-				<span class="pull-right">
-					<a class="left button" href="#myCarousel" data-slide="prev"></a>
-					<a class="right button" href="#myCarousel" data-slide="next"></a>
-				</span>
-			</h4>
-			<div id="myCarousel" class="myCarousel carousel slide multi-item-carousel">
-				<div class="carousel-inner">
+			</span>
+			<span class="pull-right">
+				<a class="left button" href="#myCarousel" data-slide="prev"></a>
+				<a class="right button" href="#myCarousel" data-slide="next"></a>
+			</span>
+		</h4>
+		<div id="myCarousel" class="myCarousel carousel slide multi-item-carousel">
+			<div class="carousel-inner">
 
-{% for item in saree_list  %}
-<div class="item {% if forloop.counter == 1 %}active{% endif %}" id="slide{{ forloop.counter }}">
-<!--<div class="item active">-->
-    <ul class="thumbnails">
-
-        <li class="span4">
-            <div class="product-box">
-                <span class="sale_tag"></span>
-                <p>
-                    <a href="{% url 'stock:products' item.id %}">
-						<img src="{{ item.group_image.url }}" alt="" style="height:270px;"/>
-					</a>
-                </p>
-                <a href="{% url 'stock:products' item.id %}" class="title">ID={{ item.id}} &{{ item.group }}</a>
-                <br/>
-                <a href="{% url 'stock:products' item.id %}" class="category"> {{forloop.index}} =={{ item.description }}</a>
-                <p class="price">Rs.{{ item.price }}</p>
-            </div>
-        </li>
-    </ul>
-</div>
-
-{% endfor %}
-
-
-
-
+				{% for item in saree_list  %}
+				<div class="item {% if forloop.counter == 1 %}active{% endif %}"
+					 id="slide{{ forloop.counter }}">
+				<!--<div class="item active">-->
+					<ul class="thumbnails">
+						<li class="span4">
+							<div class="product-box">
+								<span class="sale_tag"></span>
+								<p>
+									<a href="{% url 'stock:products' item.id %}">
+										<img src="{{ item.group_image.url }}" alt="" style="height:270px;"/>
+									</a>
+								</p>
+								<a href="{% url 'stock:products' item.id %}" class="title">ID={{ item.id}} &{{ item.group }}</a>
+								<br/>
+								<a href="{% url 'stock:products' item.id %}" class="category"> {{forloop.index}} =={{ item.description }}</a>
+								<p class="price">Rs.{{ item.price }}</p>
+							</div>
+						</li>
+					</ul>
 				</div>
+				{% endfor %}
 			</div>
 		</div>
 	</div>
+</div>
 
 
 {% block javascript %}

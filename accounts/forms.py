@@ -1,6 +1,7 @@
 from django import forms
 from . models import Dealer,Reseller,Customer,SalesOrder
 
+
 class DealerForm(forms.ModelForm):
     class Meta:
         model = Dealer

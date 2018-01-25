@@ -4,6 +4,9 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.views import generic
 from . models import ItemGroup,ItemStock
+from . forms import ItemGroupForm,ItemStockForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 class ItemGroupListView(generic.ListView):
@@ -28,7 +31,7 @@ class ItemGroupListView(generic.ListView):
         #     'churidar_list': churidars,
         #     'jewel_list': jewels,
         # })
-        print sarees
+        print jewels
         return context
 
 
@@ -51,6 +54,7 @@ def item_stock_list(request,pk):
         print item.item_name
     return render(request,'stock/products.html',{"item_list":item_list})
 
+
 class ItemStockDetailView(generic.DetailView):
     model = ItemStock
     template_name = 'stock/product_detail.html'
@@ -61,3 +65,18 @@ def view_cart(request):
 
 def checkout(request):
     return render(request, 'stock/checkout.html')
+
+
+def add_item_group(request):
+    if request.method == "POST":
+        form = ItemGroupForm(request.POST,request.FILES)
+        if form.is_valid():
+            # new_group = ItemGroup(data = request.POST)
+            # new_group.save()
+            form.save()
+            return HttpResponseRedirect(reverse('stock:add_item_group'))
+        else:
+            print form.errors
+    else:
+        form = ItemGroupForm()
+        return render(request,'stock/add_item_group.html',{'form':form})
